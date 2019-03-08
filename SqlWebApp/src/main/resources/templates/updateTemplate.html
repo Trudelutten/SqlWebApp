@@ -1,0 +1,98 @@
+</html><html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/main.css" rel="stylesheet" />
+    <title>Update an existing person</title>
+</head>
+<body>
+
+<div class="s010">
+    <form th:action="@{/update}" th:object="${userUpdateInput}" method="POST">
+        <div class="inner-form">
+            <div class="basic-update">
+                <div class="input-field">
+                    <input type="text" value="" th:field="*{id}" placeholder="Please Enter a Unique PersonID Here" name="id" id="id" class="input-field"/>
+                </div>
+                <div class="input-field">
+                    <input type="text" th:field="*{value}" placeholder="Please Enter the Updated Value " name="value" id="value" class="input-field"/>
+                </div>
+            </div>
+            <div class="attribute">
+                <span class="desc">Pick the Attribute you wish to Update </span>
+                <div class="row">
+                    <div class="input-field">
+                        <div class="input-select">
+                            <select th:field="*{attributeName}" data-trigger="" name="attributeName" id="attributeName">
+                                <option value="">Attribute</option>
+                                <option th:value="FirstName">First name</option>
+                                <option th:value="LastName">Last name</option>
+                                <option th:value="HomeAddress">Home Address</option>
+                                <option th:value="DateOfBirth">Date of birth</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <div class="group-btn">
+                            <button class="btn-search">UPDATE</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="third.row">
+                    <p>
+                        To update a person entry in the database please give a integer value for the personID in the first input field.
+                        The value you wish to change to in the next input field.
+                        Then pick the relevant attribute to change in the drop down menu. <br>
+                        <br>
+                        If you wish to change a persons date of birth the value must be passed on the form:
+                        YYYY-MM-DD
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+<script src="js/choices.js"></script>
+<script>
+      const customSelects = document.querySelectorAll("select");
+      const deleteBtn = document.getElementById('delete')
+      const choices = new Choices('select',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+        removeItemButton: true,
+      });
+      for (let i = 0; i < customSelects.length; i++)
+      {
+        customSelects[i].addEventListener('addItem', function(event)
+        {
+          if (event.detail.value)
+          {
+            let parent = this.parentNode.parentNode
+            parent.classList.add('valid')
+            parent.classList.remove('invalid')
+          }
+          else
+          {
+            let parent = this.parentNode.parentNode
+            parent.classList.add('invalid')
+            parent.classList.remove('valid')
+          }
+        }, false);
+      }
+      deleteBtn.addEventListener("click", function(e)
+      {
+        e.preventDefault()
+        const deleteAll = document.querySelectorAll('.choices__button')
+        for (let i = 0; i < deleteAll.length; i++)
+        {
+          deleteAll[i].click();
+        }
+      });
+
+    </script>
+</body>
+</html>

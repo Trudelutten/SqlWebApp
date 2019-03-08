@@ -1,0 +1,112 @@
+REQUIREMENTS
+1. The app must perform CRUD operations for all tables
+2. The app must allow me to search by name/surname/telephone number.
+3. For a given contact it must show the related contacts and how they are related.
+4. The app must have a public API that exposes the values as JSON
+5. The app must have a web interface for browsing existing contacts
+5. There must be methods for adding data (Web forms are not a requirement)
+6. Specifically, you must create Post Mappings but they only need to be usable via Postman/Console
+
+OPTIONAL: Web based forms for editing/adding contacts
+OPTIONAL: Hosted on Heroku (Hand in both source and Heroku Link in README.md file)
+
+HINT: See Thursdays optional task
+
+___________________________________________________________________
+
+TODO 26.02.2019 10:00
+
+CREATE AND INIT DB
++ Fix LocalDate to Date to db
++ Move the filling of the tables
+
+CRUD to db
++ Done with INSERT (Create) + add rollback when applied
++ Need SELECT (read)
++ Need UPDATE with rollback on fail
++ Need DELETE
+
+Temporary Java Objects
++ Store info in POJO --> class Person{}
++ So create 4 classes
+(When SELECTing more than one sql element, store in ArrayList)
+
+
+REST
++ Take any POJO and send to browser
+
+DONE 26.02.2019 14.30
+
+___________________________________________________________________
+
+TODO after 26.02.2019 14:30
+
++ Store phoneNumbers, emails and relations of a person in Map/HashMap  - in class Person
++ /person should show all the person json objects. x4
++ generalize update
++ Need SELECT methods that gets by firstname, lastname, and telephone number.
++ LISTS OF JSON OBJECTS
++ List of persons - make a method that makes an array or ArrayList of Person objects
++ SEARCH MECHANISM FROM BROWSER
++ READ PERSON FROM BROWSER (done?)
++ ONLY ALLOWED P_ID
++ check whether pID exists before adding entry into the other tables
+
+
+- RESTRUCTURE that damn TheSqlConnection.java file
+- maybe a separate file for all manipulations of each table?
+- and a file for the init of all columns?
+- Store p1Name and p2Name in relationship - in class Relationships
+- A standard web page when accessing url that don't exist
+- UPDATE PERSON FROM BROWSER
+- REMOVE PERSON FROM BROWSER
+- to allow search of person by firstname, lastname, and telephone number
+
+- ADD PERSON FROM BROWSER
+
+DONE 27.02
+___________________________________________________________________
+
+TODO after 27.02
+- Controller
++    - pass variables given by the user to the DB to fetch Person
+-+    - Pass variables to db to insert new (done in terminal using curl)
+        - person
+        - phoneNumber
+        - emails
+        - relations
+    - Pass variables to db to delete
+    - ... to update
+- DEBUGGGGGGGGG
+- Host on Heroku
+- Links from Person to his Relationships
+
+
+___________________________________________________________________
+
+TODO after 28.02
+- curl to update any table value
+- curl to delete by pID in all tables
+
+- in JSON Person object on web, have a link to each relationship
+
+- web page to insert new person
+- web page to insert new phonenumber
+- web page to insert new email
+- web page to insert new relations
+- web page to update any table value
+- web page to delete by pID in all tables
+
+- MAIN web page with links to all other pages
+
+
+-- HEROKU LIVE APP
+-- Connect to postgres on Heroku
+
+- write README.md
+
+
+private long id;
+private String tableName;
+private String attributeName;
+private String value;

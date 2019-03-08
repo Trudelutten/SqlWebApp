@@ -1,0 +1,77 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/main.css" rel="stylesheet" />
+</head>
+<body>
+<div class="s010">
+    <form th:action="@{/menu}" th:object="${userInput}" method="POST">
+        <div class="inner-form">
+            <div class="basic-search">
+                <div class="input-field">
+                    <input type="text" th:field="*{value}" placeholder="Search Here" name="value" id="value" class="input-field"/>
+                </div>
+            </div>
+            <div class="attribute">
+                <span class="desc">Pick an Attribute</span>
+                <div class="row">
+                    <div class="input-field">
+                        <div class="input-select">
+                            <select th:field="*{attribute}" data-trigger="" name="value" id="attribute">
+                                <option value="">Attribute</option>
+                                <option th:value="FirstName">First name</option>
+                                <option th:value="LastName">Last name</option>
+                                <option th:value="PhoneNumber">Phonenumber</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-field">
+                        <div class="group-btn">
+                            <button class="btn-search">SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="js/choices.js"></script>
+<script>
+      const customSelects = document.querySelectorAll("select");
+      const deleteBtn = document.getElementById('delete')
+      const choices = new Choices('select',
+      {
+        searchEnabled: false,
+        itemSelectText: '',
+        removeItemButton: true,
+      });
+      for (let i = 0; i < customSelects.length; i++)
+      {
+        customSelects[i].addEventListener('addItem', function(event)
+        {
+          if (event.detail.value)
+          {
+            let parent = this.parentNode.parentNode
+            parent.classList.add('valid')
+            parent.classList.remove('invalid')
+          }
+          else
+          {
+            let parent = this.parentNode.parentNode
+            parent.classList.add('invalid')
+            parent.classList.remove('valid')
+          }
+        }, false);
+      }
+      deleteBtn.addEventListener("click", function(e)
+      {
+        e.preventDefault()
+        const deleteAll = document.querySelectorAll('.choices__button')
+        for (let i = 0; i < deleteAll.length; i++)
+        {
+          deleteAll[i].click();
+        }
+      });
+
+    </script>
+</body>
+</html>

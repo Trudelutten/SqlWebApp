@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="css/main.css" rel="stylesheet" />
+    <title>Delete Person</title>
+</head>
+<body>
+<div class="s010">
+    <form th:action="@{/delete}" th:object="${deleteInput}" method="POST">
+        <div class="inner-form">
+            <div class="basic-delete">
+                <div class="input-field">
+                    <input type="text" th:field="*{value}" placeholder="Enter Person ID Here" name="value" id="value" class="input-field"/>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="input-field">
+                <div class="group-btn">
+                    <button class="btn-search">DELETE</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

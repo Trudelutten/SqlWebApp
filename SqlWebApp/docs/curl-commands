@@ -1,0 +1,81 @@
+#########################
+###### SELECT SQL #######
+
+# List all persons
+curl -i -H "Content-Type: application/json" \
+-X GET localhost:8080/persons
+
+# List one person (id = 1)
+curl -i -H "Content-Type: application/json" \
+-X GET localhost:8080/persons/1
+
+
+
+#########################
+###### CREATE SQL #######
+
+# Insert new person
+curl -i -H "Content-Type: application/json" -X POST -d '{
+   "firstName": "Jonathan",
+   "lastName": "Stang",
+   "homeAddress": "Sogn Studentby",
+   "dateOfBirth": "1993-05-13"
+}' localhost:8080/persons
+
+# Insert new PhoneNumber
+curl -i -H "Content-Type: application/json" -X POST -d '{
+    "pID": 10,
+    "phoneCategory": "home",
+    "phoneNumber": "34212343"
+    }' localhost:8080/phonenumber
+
+# Insert new Email
+curl -i -H "Content-Type: application/json" -X POST -d '{
+    "pID": 10,
+    "emailCategory": "home",
+    "email": "thenewestemailTHESECOND@bestemail.com"
+    }' localhost:8080/email
+
+# Insert new Relationship
+curl -i -H "Content-Type: application/json" -X POST -d '{
+    "p1": 10,
+    "p2": 6,
+    "p1p2": "auntie",
+    "p2p1": "nephew"
+    }' localhost:8080/relationship
+
+
+
+#########################
+###### UPDATE SQL #######
+
+# In table Persons, change one persons FirstName
+curl -i -H "Content-Type: application/json" -X POST -d '{
+        "id": 8,
+        "tableName": "Persons",
+        "attributeName": "FirstName",
+        "value": "Arne-Bjarne"
+}' localhost:8080/update
+
+# In table PhoneNumbers change one phone number
+curl -i -H "Content-Type: application/json" -X POST -d '{
+        "id": 1,
+        "tableName": "PhoneNumbers",
+        "attributeName": "Number",
+        "value": "66666666"
+}' localhost:8080/update-any
+
+# In PhoneNumbers change one category
+curl -i -H "Content-Type: application/json" -X POST -d '{
+        "id": 1,
+        "tableName": "PhoneNumbers",
+        "attributeName": "PhoneCategory",
+        "value": "allround phone"
+}' localhost:8080/update-any
+
+
+
+#########################
+###### DELETE SQL #######
+
+DO IT THROUGH THE WEB PAGE
